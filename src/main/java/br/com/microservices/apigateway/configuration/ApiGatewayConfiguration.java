@@ -18,11 +18,36 @@ public class ApiGatewayConfiguration {
     * 3.221.196.38:80
     *
     * */
+//    @Bean
+//    public RouteLocator gatewayRouterTest(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route(r -> r.path("/get")
+//                        .filters(f -> f.addRequestHeader("Hello", "World"))
+//                        .uri("http://18.235.70.76:80"))
+//                .build();
+//    }
+
+    /*
+     * Utilizando as rotas para balanceamento de carga
+     * */
+
     @Bean
     public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(r -> r.path("/anything")
+                .route(r -> r.path("/get")
+                        .filters(f -> f
+                                .addRequestHeader("Hello", "World")
+                                .addRequestParameter("Hello", "World")
+                        )
                         .uri("http://18.235.70.76:80"))
+                .route(p -> p
+                        .path("/cambio-service/**")
+                        .uri("lb://cambio-service") //lb = load balance + service name (eureka)
+                )
+                .route(p -> p
+                        .path("/book-service/**")
+                        .uri("lb://book-service") //lb = load balance + service name (eureka)
+                )
                 .build();
     }
 }
