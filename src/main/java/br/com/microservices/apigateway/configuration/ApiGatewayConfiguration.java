@@ -9,26 +9,26 @@ import org.springframework.context.annotation.Configuration;
 public class ApiGatewayConfiguration {
 
     /*
-    *
-    * Name: httpbin.org
-    * Addresses:
-    * 18.235.70.76:80
-    * 54.87.89.151:80
-    * 44.207.203.25:80
-    * 3.221.196.38:80
-    *
-    * */
-//    @Bean
-//    public RouteLocator gatewayRouterTest(RouteLocatorBuilder builder) {
-//        return builder.routes()
-//                .route(r -> r.path("/get")
-//                        .filters(f -> f.addRequestHeader("Hello", "World"))
-//                        .uri("http://18.235.70.76:80"))
-//                .build();
-//    }
+     *
+     * Name: httpbin.org
+     * Addresses:
+     * 18.235.70.76:80
+     * 54.87.89.151:80
+     * 44.207.203.25:80
+     * 3.221.196.38:80
+     *
+     * */
+    @Bean
+    public RouteLocator gatewayRouterTest(RouteLocatorBuilder builder) {
+        return builder.routes()
+                .route(r -> r.path("/get")
+                        .filters(f -> f.addRequestHeader("Hello", "World"))
+                        .uri("http://18.235.70.76:80"))
+                .build();
+    }
 
     /*
-     * Utilizando as rotas para balanceamento de carga
+     * gateway routes for book-service and cambio-service to be accessed through the gateway
      * */
 
     @Bean
