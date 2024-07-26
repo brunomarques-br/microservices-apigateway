@@ -31,23 +31,23 @@ public class ApiGatewayConfiguration {
      * gateway routes for book-service and cambio-service to be accessed through the gateway
      * */
 
-    @Bean
-    public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
-        return builder.routes()
-                .route(r -> r.path("/get")
-                        .filters(f -> f
-                                .addRequestHeader("Hello", "World")
-                                .addRequestParameter("Hello", "World")
-                        )
-                        .uri("http://18.235.70.76:80"))
-                .route(p -> p
-                        .path("/cambio-service/**")
-                        .uri("lb://cambio-service") //lb = load balance + service name (eureka)
-                )
-                .route(p -> p
-                        .path("/book-service/**")
-                        .uri("lb://book-service") //lb = load balance + service name (eureka)
-                )
-                .build();
-    }
+//    @Bean
+//    public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route(r -> r.path("/get")
+//                        .filters(f -> f
+//                                .addRequestHeader("Hello", "World")
+//                                .addRequestParameter("Hello", "World")
+//                        )
+//                        .uri("http://18.235.70.76:80"))
+//                .route(p -> p
+//                        .path("/cambio-service/**")
+//                        .uri("lb://cambio-service") //lb = load balance + service name (eureka)
+//                )
+//                .route(p -> p
+//                        .path("/book-service/**")
+//                        .uri("lb://book-service") //lb = load balance + service name (eureka)
+//                )
+//                .build();
+//    }
 }
