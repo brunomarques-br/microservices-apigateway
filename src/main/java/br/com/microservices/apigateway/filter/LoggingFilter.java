@@ -25,4 +25,8 @@ public class LoggingFilter implements GlobalFilter {
         return chain.filter(exchange);
     }
 
+    public void info(String message) {
+        logger.info(message);
+    }
+
 }
